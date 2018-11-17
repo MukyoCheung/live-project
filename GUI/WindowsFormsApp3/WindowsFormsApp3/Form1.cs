@@ -29,12 +29,19 @@ namespace WindowsFormsApp3
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            System.DateTime currentTime = new System.DateTime();
+            int sec = currentTime.Second;
+            int g=0;
             DateTime result;
+            string str5=null;
             int m;
             string str = null;
             int j=0,k=0;
             int[] p= new int[1000];
             string key = textBox1.Text;
+            string strText = textBox7.Text;
+            int num = 0;
+            int.TryParse(strText, out num);
             string time1 = textBox2.Text;
             if (time1.Length == 0)
                 time1 = "2018-08-20 16:45:49";
@@ -72,19 +79,55 @@ namespace WindowsFormsApp3
                 if (dt3 > dt2)
                     break;
                 string str1 = content[p[k]-1].Remove(0, 19);
-                str = str + str1+ "\r\n";
+                while (true)
+                {
+                    if(str == null)
+                    {
+                        str = str + str1 + "\r\n";
+                        break;
+                    }
+                    if (str.Contains(str1))
+                        break;
+                    str =str + str1 + "\r\n";
+                    g++;
+                }
             }
-            textBox4.Text = str;
-
-
-            Console.WriteLine();
-
-
+            string[] member= str.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int n=0;n<num;n++)
+            {
+                Random rd = new Random();
+                int d=rd.Next(0,g+1);
+                str5 = str5 + member[(d+n*n+sec)%g]+" "+gift[n]+"\r\n";
+            }
+            currentTime = System.DateTime.Now;
+            string time5 = textBox2.Text;
+            if (time5.Length == 0)
+                time5 = "2020-08-20 16:45:49";
+            DateTime dt6 = DateTime.Parse(time5);
+            //while (true)
+            //{
+               // if (dt6 >= currentTime)
+               //{
+                    textBox4.Text = str5;
+               //     break;
+               // }
+              //  System.Threading.Thread.Sleep(1000);
+          //  }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+        string str10 = null;
+        string[] gift;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            string temp = textBox5.Text;
+            str10 = str10 + temp+ "\r\n";
+            textBox6.Text = str10;
+            gift= str10.Split(new string[] { "\r\n" }, StringSplitOptions.None);
         }
     }
 }
