@@ -1,0 +1,3 @@
+﻿  find.cpp
+c:\users\mukyo\documents\visual studio 2017\projects\find\find\find.cpp(64): error C2440: 'initializing': cannot convert from 'const char [17]' to 'int'
+  c:\users\mukyo\documents\visual studio 2017\projects\find\find\find.cpp(64): note: There is no context in which this conversion is possible
